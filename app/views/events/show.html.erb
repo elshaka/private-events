@@ -1,0 +1,15 @@
+<% if  @event %>
+<section class="event-atendees">
+  <h2>Event Atendees</h2>
+  <p>Host: <%= @event.host.name %> (<%= @event.host.username %>)</p>
+  <p>Description: <%= @event.description %></p>
+  Attendees:
+  <ol>
+    <% @event.attendees.each do |attendee| %>
+      <li><%= attendee.name %> (<%= attendee.username %>)</li>
+    <% end %>
+  </ol>
+</section>
+<% else %>
+ Error! No such event.
+<% end %>

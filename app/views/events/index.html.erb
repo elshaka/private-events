@@ -1,0 +1,38 @@
+<section class="upcoming-events">
+  <h2>Upcoming Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Host</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @upcoming_events.each do |event| %>
+      <tr>
+        <td><%= event.host.name %></td>
+        <td><%= event.description %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</section>
+<section class="past-events">
+  <h2>Past Events</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Host</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @prev_events.each do |event| %>
+      <tr>
+        <td><%= event.host.name %></td>
+        <td><%= event.description %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>  
+</section>
