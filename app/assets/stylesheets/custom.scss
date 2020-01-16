@@ -1,0 +1,32 @@
+@import "bootstrap";
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.container {
+  padding-top: 10px;
+}
+
+h2, h3 {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.form-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.field_with_errors input {
+  @extend .is-invalid;
+}
