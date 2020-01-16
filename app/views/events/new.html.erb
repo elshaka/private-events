@@ -1,0 +1,6 @@
+<h2>New Event</h2>
+<%= form_with(url: '/events', method: 'post') do %>
+  <%= label_tag :date, "Date:" %> <%= date_field :event, :date %><br/>
+  <%= label_tag :description, "Description:" %> <%= text_area :event, :description %><br/>
+  <%= submit_tag("Create") %>
+<% end %>
