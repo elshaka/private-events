@@ -1,0 +1,9 @@
+<% if events.any? %>
+<ul>
+  <% events.each do |event| %>
+    <li><%= event.description %>, <%= event.created_at %></li>
+  <% end %>
+</ul>
+<% else %>
+  <p><%= no_events_message %></p>
+<% end %>

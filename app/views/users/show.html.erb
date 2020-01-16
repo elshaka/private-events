@@ -1,12 +1,6 @@
 <h1>User <%= @user.name %></h1>
 <p>Username: <%= @user.username %></p>
 <h2>Created events</h2>
-<% if @user.hosted_events.any? %>
-<ul>
-  <% @user.hosted_events.each do |event| %>
-    <li><%= event.description %>, <%= event.created_at %></li>
-  <% end %>
-</ul>
-<% else %>
-  <p>You haven't created any events</p>
-<% end %>
+<%= render 'user_events', events: @user.hosted_events, no_events_message: "You haven't created any events" %>
+<h2>Attending events</h2>
+<%= render 'user_events', events: @user.attending_events, no_events_message: "You're not attending any events" %>
