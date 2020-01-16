@@ -1,0 +1,12 @@
+<h1>User <%= @user.name %></h1>
+<p>Username: <%= @user.username %></p>
+<h2>Created events</h2>
+<% if @user.hosted_events.any? %>
+<ul>
+  <% @user.hosted_events.each do |event| %>
+    <li><%= event.description %>, <%= event.created_at %></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>You haven't created any events</p>
+<% end %>
