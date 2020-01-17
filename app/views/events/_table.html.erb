@@ -1,12 +1,12 @@
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Host</th>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Details</th>
+      <th scope="col">Host</th>
+      <th scope="col">Date</th>
+      <th scope="col">Description</th>
+      <th scope="col">Details</th>
       <% if logged_in? %>
-      <th>Attending?</th>
+        <th scope="col">Attending?</th>
       <% end %>
     </tr>
   </thead>
@@ -14,15 +14,15 @@
   <% events.each do |event| %>
     <tr>
       <td><%= event.host.name %></td>
-      <td><%= event.date %></td>
+      <td><%= event.date.strftime('%B %d, %Y') %></td>
       <td><%= event.description %></td>
       <td><%= link_to "Show", event %></td>
       <% if logged_in? %>
       <td>
-        <% if current_user.attending_events.include? event %>
-          Yes<% if allow_change %> — <%= link_to "Leave", leave_event_path(event), method: :post %> <% end %>
+        <% if current_user.attending? event %>
+          Yes <% if allow_change %> - <%= link_to "Leave", leave_event_path(event), method: :post, confirm: 'Are you sure?', class: 'btn btn-warning btn-sm' %> <% end %>
         <% else %>
-          No<% if allow_change %> — <%= link_to "Join", join_event_path(event), method: :post %> <% end %>
+          No <% if allow_change %> - <%= link_to "Join", join_event_path(event), method: :post, class: 'btn btn-primary btn-sm' %> <% end %>
         <% end %>
       </td>
       <% end %>

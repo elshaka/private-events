@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'static_pages#home'
+  root 'events#index'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/profile', to: 'users#show'
 
-  post '/events/:id/join', to: 'events#join', as: 'join_event'
-  post '/events/:id/leave', to: 'events#leave', as: 'leave_event'
-  resources :events, except: [:destroy]
+  resources :events, except: [:index, :destroy] do
+    member do
+      post 'join'
+      post 'leave'
+    end
+  end
 end

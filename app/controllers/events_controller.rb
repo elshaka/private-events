@@ -1,8 +1,7 @@
-class EventsController < ApplicationController    
+class EventsController < ApplicationController
   before_action :user_logged_in? , only: [:new, :create, :join, :leave]
-
   before_action :get_event, only: [:join, :leave, :show]
-  
+
   def index
     @prev_events = Event.past
     @upcoming_events = Event.upcoming
@@ -26,12 +25,20 @@ class EventsController < ApplicationController
   end
 
   def join
-    current_user.attending_events << @event
+    if current_user.join_event @event
+      flash[:success] = "You're now attending this event"
+    else
+      flash[:warning] = "You're already attending this event"
+    end
     redirect_to @event
   end
 
   def leave
-    current_user.attending_events.delete @event
+    if current_user.leave_event @event
+      flash[:success] = "You're no longer attending this event"
+    else
+      flash[:warning] = "You weren't attending this event"
+    end
     redirect_to @event
   end
 
@@ -39,6 +46,10 @@ class EventsController < ApplicationController
 
   def get_event
     @event = Event.find_by(id: params[:id])
+    unless @event
+      flash[:warning] = "The event doesn't exist"
+      redirect_to :root
+    end
   end
 
   def event_params
