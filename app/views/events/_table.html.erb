@@ -4,6 +4,10 @@
       <th>Host</th>
       <th>Date</th>
       <th>Description</th>
+      <th>Details</th>
+      <% if logged_in? %>
+      <th>Attending?</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +17,16 @@
       <td><%= event.date %></td>
       <td><%= event.description %></td>
       <td><%= link_to "Show", event %></td>
+      <% if logged_in? %>
+      <td>
+        <% if current_user.attending_events.include? event %>
+          Yes<% if allow_change %> — <%= link_to "Leave", leave_event_path(event), method: :post %> <% end %>
+        <% else %>
+          No<% if allow_change %> — <%= link_to "Join", join_event_path(event), method: :post %> <% end %>
+        <% end %>
+      </td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
-</table>  
+</table>
