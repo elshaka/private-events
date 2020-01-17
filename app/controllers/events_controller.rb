@@ -1,14 +1,13 @@
 class EventsController < ApplicationController
-  before_action :user_logged_in? , only: [:new, :create, :join, :leave]
-  before_action :get_event, only: [:join, :leave, :show]
+  before_action :user_logged_in?, only: %i[new create join leave]
+  before_action :this_event, only: %i[join leave show]
 
   def index
     @prev_events = Event.past
     @upcoming_events = Event.upcoming
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @event = Event.new
@@ -44,12 +43,12 @@ class EventsController < ApplicationController
 
   private
 
-  def get_event
+  def this_event
     @event = Event.find_by(id: params[:id])
-    unless @event
-      flash[:warning] = "The event doesn't exist"
-      redirect_to :root
-    end
+    return if @event
+
+    flash[:warning] = "The event doesn't exist"
+    redirect_to :root
   end
 
   def event_params

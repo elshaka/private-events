@@ -11,11 +11,13 @@ class User < ApplicationRecord
 
   def join_event(event)
     return false if attending_events.include? event
+
     attending_events << event
   end
 
   def leave_event(event)
     return false unless attending_events.include? event
+
     attending_events.destroy event
   end
 
