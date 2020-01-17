@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rspec-rails'
+gem 'rails-controller-testing'
 gem 'rubocop'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
