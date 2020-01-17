@@ -1,9 +1,12 @@
-<% if events.any? %>
-  <ul class="list-unstyled">
-    <% events.each do |event| %>
-      <li><%= event.description %> (<%= link_to 'Details', event %>)</li>
-    <% end %>
-  </ul>
+<p class="font-weight-bold font-italic">Upcoming events</p>
+<% if events.upcoming.any? %>
+  <%= render 'events_list', events: events.upcoming %>
 <% else %>
-  No events
+  <p>No events</p>
+<% end %>
+<p class="font-weight-bold font-italic">Past events</p>
+<% if events.past.any? %>
+  <%= render 'events_list', events: events.past %>
+<% else %>
+  <p>No events</p>
 <% end %>
