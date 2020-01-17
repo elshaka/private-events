@@ -25,6 +25,15 @@ rails server
 
 After the application is up and running, you'll need to create a user account for creating and joining events. You can do that by visiting _/signup_. After the user is created, you'll need to login, which can be done by visiting _/login_. After logging in, the front page will give you options regarding how to create, join or leave events.
 
+## TESTING
+
+This project uses [Rspec](https://rspec.info/). The basic tests for checking if this project conforms
+to the specification can be run with the following command at the root folder of the project.
+
+```
+rspec
+```
+
 
 ## LIVE VERSION
 
