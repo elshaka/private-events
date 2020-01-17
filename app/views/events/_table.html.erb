@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Host</th>
+      <th>Date</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% events.each do |event| %>
+    <tr>
+      <td><%= event.host.name %></td>
+      <td><%= event.date %></td>
+      <td><%= event.description %></td>
+      <td><%= link_to "Show", event %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>  
