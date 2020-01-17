@@ -20,7 +20,7 @@
       <% if logged_in? %>
       <td>
         <% if current_user.attending? event %>
-          Yes <% if allow_change %> - <%= link_to "Leave", leave_event_path(event), method: :post, confirm: 'Are you sure?', class: 'btn btn-warning btn-sm' %> <% end %>
+          Yes <% if allow_change %> - <%= link_to "Leave", leave_event_path(event), method: :post, data: {confirm: 'Are you sure?'}, class: 'btn btn-warning btn-sm' %> <% end %>
         <% else %>
           No <% if allow_change %> - <%= link_to "Join", join_event_path(event), method: :post, class: 'btn btn-primary btn-sm' %> <% end %>
         <% end %>
