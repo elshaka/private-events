@@ -1,6 +1,24 @@
-<h1>User <%= @user.name %></h1>
-<p>Username: <%= @user.username %></p>
-<h2>Created events</h2>
-<%= render 'user_events', events: @user.hosted_events, no_events_message: "You haven't created any events" %>
-<h2>Attending events</h2>
-<%= render 'user_events', events: @user.attending_events, no_events_message: "You're not attending any events" %>
+<% provide(:title, 'User details') %>
+<h2>User Profile</h2>
+<div class="container details">
+  <div class="row">
+    <div class="field">Full name</div>
+    <div class="value"><%= @user.name %></div>
+  </div>
+  <div class="row">
+    <div class="field">Username</div>
+    <div class="value"><%= @user.username %></div>
+  </div>
+  <div class="row">
+    <div class="field">Hosted events</div>
+    <div class="value">
+      <%= render 'user_events', events: @user.hosted_events %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field">Attending events</div>
+    <div class="value">
+      <%= render 'user_events', events: @user.attending_events %>
+    </div>
+  </div>
+</div>

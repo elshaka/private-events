@@ -19,6 +19,7 @@
 
 h2, h3 {
   padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
 }
 
@@ -29,4 +30,18 @@ h2, h3 {
 
 .field_with_errors input {
   @extend .is-invalid;
+}
+
+.details .row {
+  padding: 10px;
+}
+
+.details .field {
+  @extend .col-md-3;
+  @extend .font-weight-bold;
+  @extend .text-md-right;
+}
+
+.details .value {
+  @extend .col-md-9;
 }
