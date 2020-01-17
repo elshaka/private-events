@@ -5,8 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rspec-rails'
 gem 'rails-controller-testing'
+gem 'rspec-rails'
 gem 'rubocop'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
