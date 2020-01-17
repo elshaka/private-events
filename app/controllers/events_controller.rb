@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :user_logged_in? , only: [:create]
 
   def index
-    @prev_events = Event.all
-    @upcoming_events = Event.all
+    @prev_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def show
@@ -11,11 +11,14 @@ class EventsController < ApplicationController
   end
 
   def create
-    host = current_user
-    attendance = Attendance.new
-    attendance.user = host
-    attendance.build_event description: params[:event][:description]
-    attendance.event.host = host
-    attendance.save
+    @event = current_user.hosted_events.build event_params 
+    @event.save
+    redirect_to @event
+  end
+  
+  private
+  
+  def event_params
+    params.require(:event).permit(:description, :date)
   end
 end
