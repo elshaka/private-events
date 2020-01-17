@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/profile', to: 'users#show'
 
+  post '/events/:id/join', to: 'events#join', as: 'join_event'
+  post '/events/:id/leave', to: 'events#leave', as: 'leave_event'
   resources :events, except: [:destroy]
 end
