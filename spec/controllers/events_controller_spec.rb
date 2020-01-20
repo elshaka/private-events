@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-  # TODO Use FactoryBot
+  # TODO: Use FactoryBot
   let(:user) { User.create name: 'John Doe', username: 'john' }
   let(:other_user) { User.create name: 'Jack Johnson', username: 'jack' }
-  let!(:future_event) { other_user.hosted_events.create! description: 'Some new event description', date: 1.week.from_now }
-  let!(:past_event) { other_user.hosted_events.create! description: 'Some old event description', date: 1.week.ago }
+  let!(:future_event) { other_user.hosted_events.create! description: 'New Event', date: 1.week.from_now }
+  let!(:past_event) { other_user.hosted_events.create! description: 'Old Event', date: 1.week.ago }
 
   describe '#index' do
     before { get :index }
@@ -32,7 +32,7 @@ RSpec.describe EventsController, type: :controller do
     describe '#create' do
       it 'should create an event hosted by the current user' do
         expect(user.hosted_events.empty?).to eql(true)
-        post :create, params: { event: { description: "Next Weekly Meeting", date: 1.week.from_now } }
+        post :create, params: { event: { description: 'Next Weekly Meeting', date: 1.week.from_now } }
         expect(user.hosted_events.empty?).to eql(false)
       end
     end
