@@ -41,11 +41,19 @@ RSpec.describe EventsController, type: :controller do
 
   context 'when not logged in' do
     describe '#new' do
-      it 'should redirect to the form page'
+      it 'should redirect to the form page' do
+        get :new
+
+        expect_redirect_to_login
+      end
     end
 
     describe '#create' do
-      it 'should redirect to the form page'
+      it 'should redirect to the form page' do
+        post :create
+
+        expect_redirect_to_login
+      end
     end
 
     describe '#join' do
@@ -56,5 +64,4 @@ RSpec.describe EventsController, type: :controller do
       it 'should redirect to the form page'
     end
   end
-
 end
