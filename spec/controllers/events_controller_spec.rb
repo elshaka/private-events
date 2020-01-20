@@ -20,28 +20,45 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe '#show' do
-    it 'should show the event'
+    it 'should show the event' do
+      get :show, params: { id: future_event.id }
+      expect(response).to have_http_status(200)
+    end
   end
 
   context 'when logged in' do
     before { login(user) }
 
     describe '#create' do
-      it 'should create an event hosted by the current user'
+      it 'should create an event hosted by the current user' do
+        expect(user.hosted_events.empty?).to eql(true)
+        post :create, params: { event: { description: "Next Weekly Meeting", date: 1.week.from_now } }
+        expect(user.hosted_events.empty?).to eql(false)
+      end
     end
 
     describe '#join' do
-      it 'should add the current user as an atendee to the event'
+      it 'should add the current user as an atendee to the event' do
+        expect(user.attending_events.empty?).to eql(true)
+        post :join, params: { id: future_event.id }
+        expect(user.attending_events.empty?).to eql(false)
+      end
     end
 
     describe '#leave' do
-      it 'should remove the current user event atendees'
+      it 'should remove the current user event atendees' do
+        expect(user.attending_events.empty?).to eql(true)
+        post :join, params: { id: future_event.id }
+        expect(user.attending_events.empty?).to eql(false)
+        post :leave, params: { id: future_event.id }
+        expect(user.attending_events.empty?).to eql(true)
+      end
     end
   end
 
   context 'when not logged in' do
     describe '#new' do
-      it 'should redirect to the form page' do
+      it 'should redirect to the log-in form page' do
         get :new
 
         expect_redirect_to_login
@@ -49,19 +66,24 @@ RSpec.describe EventsController, type: :controller do
     end
 
     describe '#create' do
-      it 'should redirect to the form page' do
+      it 'should redirect to the log-in form page' do
         post :create
-
         expect_redirect_to_login
       end
     end
 
     describe '#join' do
-      it 'should redirect to the form page'
+      it 'should redirect to the log-in form page' do
+        post :join, params: { id: future_event.id }
+        expect_redirect_to_login
+      end
     end
 
     describe '#leave' do
-      it 'should redirect to the form page'
+      it 'should redirect to the log-in form page' do
+        post :leave, params: { id: future_event.id }
+        expect_redirect_to_login
+      end
     end
   end
 end
