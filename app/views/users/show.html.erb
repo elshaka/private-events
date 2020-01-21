@@ -1,0 +1,24 @@
+<% provide(:title, 'User details') %>
+<h2>User Profile</h2>
+<div class="container details">
+  <div class="row">
+    <div class="field">Full name</div>
+    <div class="value"><%= @user.name %></div>
+  </div>
+  <div class="row">
+    <div class="field">Username</div>
+    <div class="value"><%= @user.username %></div>
+  </div>
+  <div class="row">
+    <div class="field">Hosted events</div>
+    <div class="value">
+      <%= render 'user_events', events: @user.hosted_events %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="field">Attending events</div>
+    <div class="value">
+      <%= render 'user_events', events: @user.attending_events %>
+    </div>
+  </div>
+</div>

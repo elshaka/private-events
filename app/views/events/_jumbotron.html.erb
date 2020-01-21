@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <h1 class="display-4">Private Events!</h1>
+  <p class="lead">Welcome to the Private Events app, a simple Rails app manage events</p>
+  <% if logged_in? %>
+    <%= link_to 'Create a new event', new_event_path, class: 'btn btn-primary btn', role: 'button' %>
+  <% else %>
+    <hr class="my-4">
+    <p>You can only create and attend events if you have an account</p>
+    <p><%= link_to 'Click here to sign up for an account!', signup_path, class: 'btn btn-primary btn', role: 'button' %></p>
+    Already have an account? <%= link_to 'Log in', login_path %>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<ul class="list-unstyled">
+  <% events.each do |event| %>
+    <li><%= event.description %> (<%= link_to 'Details', event %>)</li>
+  <% end %>
+</ul>
